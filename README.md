@@ -32,9 +32,9 @@ disk.mkdir_p('/path/to/remote/dir')
 # remote file operations:
 
 # copy file/dir
-disk.copy('/path/to/remote/file/or/dir', ''/path/to/new/remote/file/or/dir')
+disk.copy('/path/to/remote/file/or/dir', '/path/to/new/remote/file/or/dir')
 # move file/dir
-disk.move('/path/to/remote/file/or/dir', ''/path/to/new/remote/file/or/dir')
+disk.move('/path/to/remote/file/or/dir', '/path/to/new/remote/file/or/dir')
 # delete file/dir
 disk.delete('/path/to/remote/file/or/dir') # returns `true` if everything is ok
 ```

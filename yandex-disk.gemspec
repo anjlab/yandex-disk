@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["yurykorolev@me.com"]
   spec.description   = %q{Ruby client for Yandex.Disk}
   spec.summary       = %q{Ruby client for Yandex.Disk with backup gem support}
-  spec.homepage      = ""
+  spec.homepage      = "https://github.com/anjlab/yandex-disk"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
