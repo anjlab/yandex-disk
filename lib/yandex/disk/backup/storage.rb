@@ -25,7 +25,7 @@ module Backup
             src = File.join(Config.tmp_path, filename)
             dest = File.join(remote_path, filename)
             Logger.info "Storing '#{ dest }'..."
-            disk.put(src, dest)
+            disk.put!(src, dest)
           end
         end
 
