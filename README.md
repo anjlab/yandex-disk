@@ -5,8 +5,8 @@ Dead simple ruby wrapper for [Yandex.Disk API](http://api.yandex.ru/disk/doc/dg/
 To get your access token:
 
 1. Register your app at [Yandex](https://oauth.yandex.ru/client/new)
-  a. Be sure to check 'Yandex.Disk permits'
-  b. Be sure to check 'Client for development' (it will set https://oauth.yandex.ru/verification_code?dev=True as `Callback URI`)
+    1. Be sure to check 'Yandex.Disk permits'
+    2. Be sure to check 'Client for development' (it will set https://oauth.yandex.ru/verification_code?dev=True as `Callback URI`)
 2. Get access token https://oauth.yandex.ru/authorize?response_type=token&client_id=YOUR_APP_ID
 3. Get your access token from redirect url (right from the browser, it will be one of parameters)
 
