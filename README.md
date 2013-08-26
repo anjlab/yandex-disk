@@ -2,7 +2,7 @@
 
 Dead simple ruby wrapper for [Yandex.Disk API](http://api.yandex.ru/disk/doc/dg/concepts/about.xml)
 
-To get your access token:
+To get your `access_token`:
 
 1. Register your app at [Yandex](https://oauth.yandex.ru/client/new)
     1. Be sure to check 'Yandex.Disk permits'
@@ -59,11 +59,12 @@ Backup::Model.new(:my_backup, 'Description for my_backup') do
 
   compress_with Gzip
 
-  store_with ::Yandex::Disk::Backup::Storage do |server|
-    server.access_token = 'YOUR_ACCESS_TOKEN'
-    server.path         = '/backups/'
-    server.keep         = 5
+  store_with Yandex::Disk do |disk|
+    disk.access_token = 'YOUR_ACCESS_TOKEN'
+    disk.path         = '/backups/'
+    disk.keep = 5
   end
+
 end
 ```
 

@@ -1,20 +1,21 @@
 # coding: utf-8
+require 'yandex/disk/client'
 
-module Yandex
-  module Disk
-    module Backup
-      class Storage < ::Backup::Storage::Base
+module Backup
+  module Storage
+    module Yandex
+      class Disk < Base
 
         attr_accessor :access_token
 
-        def initialize(model, storage_id = nil)
+        def initialize(model, storage_id = nil, &block)
           super
-
+          instance_eval(&block) if block_given?
           @path ||= '/backups'
         end
 
         def connection
-          ::Yandex::Disk::Client.new :access_token => access_token
+          ::Yandex::Disk::Client.new(:access_token => access_token)
         end
 
         def transfer!
@@ -32,6 +33,10 @@ module Yandex
           Logger.info "Removing backup package dated #{ package.time }..."
           remote_path = remote_path_for(package)
           connection.delete(remote_path)
+        end
+
+        def storage_name
+          'Yandex::Disk'
         end
 
       end
