@@ -18,7 +18,7 @@ class YandexDiskTest < MiniTest::Unit::TestCase
   end
 
   # def test_put_large_file
-  #   assert @disk.put('large-file.psd', '/large-file.psd')
+  #   assert @disk.put('large-file.mov', '/large-file.mov')
   # end
 
   def test_put!

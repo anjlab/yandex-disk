@@ -15,7 +15,7 @@ module Backup
         end
 
         def connection
-          ::Yandex::Disk::Client.new(:access_token => access_token)
+          ::Yandex::Disk::Client.new(:access_token => access_token, :timeout => 500)
         end
 
         def transfer!

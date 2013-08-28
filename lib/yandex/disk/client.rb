@@ -8,6 +8,7 @@ module Yandex
     class Client
 
       def initialize options={}
+        @timeout = options[:timeout] || 300
         @http = Faraday.new(:url => 'https://webdav.yandex.ru') do |builder|
           builder.request :authorization, "OAuth", options[:access_token]
 
@@ -86,6 +87,7 @@ module Yandex
         @http.put do |req|
           req.url dest
           req.headers['Content-Type'] = 'application/binary'
+          req.options[:timeout] = @timeout
           req.body = Faraday::UploadIO.new(src, '')
         end
       end
