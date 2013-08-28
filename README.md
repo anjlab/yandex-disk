@@ -49,7 +49,7 @@ disk.delete('/path/to/remote/file/or/dir') # returns `true` if everything is ok
 require 'yandex/disk/backup/storage'
 
 Backup::Model.new(:my_backup, 'Description for my_backup') do
-  split_into_chunks_of 250
+  split_into_chunks_of 50
 
   database PostgreSQL do |db|
     db.name               = 'pg_db_name'
