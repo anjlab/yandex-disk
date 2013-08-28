@@ -86,7 +86,7 @@ module Yandex
         @http.put do |req|
           req.url dest
           req.headers['Content-Type'] = 'application/binary'
-          req.body = File.open(src)
+          req.body = Faraday::UploadIO.new(src, '')
         end
       end
 

@@ -17,6 +17,10 @@ class YandexDiskTest < MiniTest::Unit::TestCase
     assert_equal File.read('README.md'), remote.body
   end
 
+  # def test_put_large_file
+  #   assert @disk.put('large-file.psd', '/large-file.psd')
+  # end
+
   def test_put!
     assert_raises RuntimeError do
       begin
