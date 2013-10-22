@@ -11,7 +11,7 @@ class Yandex::Disk::Client::Request::Space
     :Depth => 0
   }
 
-  def initialize(http)
+  def initialize http
     @http = http
   end
 
@@ -30,7 +30,7 @@ class Yandex::Disk::Client::Request::Space
   class AttriutesParser < Nokogiri::XML::SAX::Document
     attr_reader :quota_available_bytes, :quota_used_bytes
 
-    def start_element(name, attributes = [])
+    def start_element name, attributes = []
       case name
         when 'd:quota-used-bytes'
           @is_quota_used_bytes = true
@@ -39,13 +39,13 @@ class Yandex::Disk::Client::Request::Space
       end
     end
 
-    def characters(string)
+    def characters string
       @quota_used_bytes = string.to_i if @is_quota_used_bytes
       @quota_available_bytes = string.to_i if @is_quota_available_bytes
     end
   end
 
-  def parse(body)
+  def parse body
     attributes_parser = AttriutesParser.new
 
     parser = Nokogiri::XML::SAX::Parser.new(attributes_parser)

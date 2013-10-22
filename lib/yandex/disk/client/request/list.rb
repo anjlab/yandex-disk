@@ -5,7 +5,7 @@ class Yandex::Disk::Client::Request::List
     :Depth => 1
   }
 
-  def initialize(http, path)
+  def initialize http, path
     @http = http
     @path = path
   end
@@ -26,7 +26,7 @@ class Yandex::Disk::Client::Request::List
       @list = []
     end
 
-    def start_element(name, attributes = [])
+    def start_element name, attributes = []
       case name
         when 'd:href'
           @list << @current if @current
@@ -51,7 +51,7 @@ class Yandex::Disk::Client::Request::List
       end
     end
 
-    def end_element(name, attributes = [])
+    def end_element name, attributes = []
       case name
         when 'd:href'
           @is_href = false
@@ -70,7 +70,7 @@ class Yandex::Disk::Client::Request::List
       end
     end
 
-    def characters(string)
+    def characters string
       @current[:href] = string if @is_href
       @current[:displayname] = string if @is_displayname
       @current[:getcontentlength] = string.to_i if @is_getcontentlength
@@ -79,7 +79,7 @@ class Yandex::Disk::Client::Request::List
     end
   end
 
-  def parse(body)
+  def parse body
     list_parser = ListParser.new
 
     parser = Nokogiri::XML::SAX::Parser.new(list_parser)

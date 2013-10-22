@@ -48,12 +48,12 @@ module Yandex
       end
 
       def space
-        request = Request::Space.new @http
+        request = Request::Space.new(@http)
         request.perform
       end
 
       def list path
-        request = Request::List.new @http, path
+        request = Request::List.new(@http, path)
         request.perform
       end
 
