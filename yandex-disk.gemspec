@@ -6,8 +6,8 @@ require 'yandex/disk/version'
 Gem::Specification.new do |spec|
   spec.name          = "yandex-disk"
   spec.version       = Yandex::Disk::VERSION
-  spec.authors       = ["Yury Korolev"]
-  spec.email         = ["yurykorolev@me.com"]
+  spec.authors       = ["Yury Korolev", "Alexandr Borisov"]
+  spec.email         = ["yurykorolev@me.com", "aishek@gmail.com"]
   spec.description   = %q{Ruby client for Yandex.Disk}
   spec.summary       = %q{Ruby client for Yandex.Disk with backup gem support}
   spec.homepage      = "https://github.com/anjlab/yandex-disk"
