@@ -3,9 +3,12 @@
 require 'faraday'
 require 'faraday_middleware'
 
+Faraday::Connection::METHODS << :propfind
+
 module Yandex
   module Disk
     class Client
+      autoload :Request, 'yandex/disk/client/request'
 
       def initialize options={}
         @timeout = options[:timeout] || 300
@@ -42,6 +45,11 @@ module Yandex
 
       def get path
         @http.get(path)
+      end
+
+      def space
+        request = Request::Space.new @http
+        request.perform
       end
 
       alias_method :mkdir, :mkcol
