@@ -29,9 +29,7 @@ class Yandex::Disk::Client::Request::List
     def start_element name, attributes = []
       case name
         when 'd:href'
-          @list << @current if @current
           @current = {}
-
           @is_href = true
 
         when 'd:displayname'
@@ -54,6 +52,7 @@ class Yandex::Disk::Client::Request::List
     def end_element name, attributes = []
       case name
         when 'd:href'
+          @list << @current if @current
           @is_href = false
 
         when 'd:displayname'
