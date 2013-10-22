@@ -52,6 +52,11 @@ module Yandex
         request.perform
       end
 
+      def list path
+        request = Request::List.new @http, path
+        request.perform
+      end
+
       alias_method :mkdir, :mkcol
 
       def mkdir_p path
