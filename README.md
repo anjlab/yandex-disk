@@ -19,7 +19,11 @@ Add this line to your application's Gemfile:
 ## Usage
 
 ```ruby
+# authorize via oauth access token...
 disk = Yandex::Disk::Client.new(:access_token => 'YOUR_ACCESS_TOKEN')
+
+# ...or use login password for authorization
+disk = Yandex::Disk::Client.new(:login => 'me', :password => 'secret')
 
 # to upload file to Yandex.Disk
 disk.put('path/to/local/file', '/path/to/remote/file') # returns `true` if everything is ok
