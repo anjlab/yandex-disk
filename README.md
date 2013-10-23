@@ -19,7 +19,11 @@ Add this line to your application's Gemfile:
 ## Usage
 
 ```ruby
+# authorize via oauth access token...
 disk = Yandex::Disk::Client.new(:access_token => 'YOUR_ACCESS_TOKEN')
+
+# ...or use login password for authorization
+disk = Yandex::Disk::Client.new(:login => 'me', :password => 'secret')
 
 # to upload file to Yandex.Disk
 disk.put('path/to/local/file', '/path/to/remote/file') # returns `true` if everything is ok
@@ -41,6 +45,12 @@ disk.copy('/path/to/remote/file/or/dir', '/path/to/new/remote/file/or/dir')
 disk.move('/path/to/remote/file/or/dir', '/path/to/new/remote/file/or/dir')
 # delete file/dir
 disk.delete('/path/to/remote/file/or/dir') # returns `true` if everything is ok
+
+# to get quotas
+disk.space # returns hash like { :quota_available_bytes => 2488943615, :quota_used_bytes => 2488943615 }
+
+# to get dir contents
+disk.list('/') # returns array with hashes like [{:href=>"/",:resourcetype=>:collection,:getlastmodified=><DateTime>,:getcontentlength=>0,:displayname=>"disk",:creationdate=><DateTime>},{:href=>"/readme.pdf",:getlastmodified=><DateTime>,:getcontentlength=>455833,:displayname=>"readme.pdf",:creationdate=><DateTime>}]
 ```
 
 ## Using it with [backup gem](https://github.com/meskyanichi/backup)
@@ -64,7 +74,6 @@ Backup::Model.new(:my_backup, 'Description for my_backup') do
     disk.path         = '/backups/'
     disk.keep = 5
   end
-
 end
 ```
 
