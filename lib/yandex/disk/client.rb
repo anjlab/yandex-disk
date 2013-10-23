@@ -1,5 +1,6 @@
 # coding: utf-8
 
+require 'base64'
 require 'faraday'
 require 'faraday_middleware'
 
@@ -13,7 +14,12 @@ module Yandex
       def initialize options={}
         @timeout = options[:timeout] || 300
         @http = Faraday.new(:url => 'https://webdav.yandex.ru') do |builder|
-          builder.request :authorization, "OAuth", options[:access_token]
+          if options[:access_token].present?
+            builder.request :authorization, "OAuth", options[:access_token]
+          else
+            basic_token = Base64.encode64("#{options[:login]}:#{options[:password]}")
+            builder.request :authorization, "Basic", basic_token
+          end
 
           builder.response :follow_redirects
 
