@@ -1,5 +1,7 @@
-require 'test/unit'
+require "minitest/autorun"
 require File.expand_path(File.dirname(__FILE__) + '/../lib/yandex/disk')
+
+MiniTest::Unit.autorun
 
 class YandexDiskTest < MiniTest::Unit::TestCase
 
