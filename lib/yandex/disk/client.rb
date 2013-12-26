@@ -14,7 +14,7 @@ module Yandex
       def initialize options={}
         @timeout = options[:timeout] || 300
         @http = Faraday.new(:url => 'https://webdav.yandex.ru') do |builder|
-          if options[:access_token].present?
+          if !options[:access_token].empty? and !options[:access_token].nil?
             builder.request :authorization, "OAuth", options[:access_token]
           else
             basic_token = Base64.encode64("#{options[:login]}:#{options[:password]}")
