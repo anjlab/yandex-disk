@@ -62,9 +62,9 @@ Backup::Model.new(:my_backup, 'Description for my_backup') do
   split_into_chunks_of 50
 
   database PostgreSQL do |db|
-    db.name               = 'pg_db_name'
-    db.username           = 'username'
-    db.password           = 'password'
+    db.name     = 'pg_db_name'
+    db.username = 'username'
+    db.password = 'password'
   end
 
   compress_with Gzip
@@ -72,7 +72,7 @@ Backup::Model.new(:my_backup, 'Description for my_backup') do
   store_with Yandex::Disk do |disk|
     disk.access_token = 'YOUR_ACCESS_TOKEN'
     disk.path         = '/backups/'
-    disk.keep = 5
+    disk.keep         = 5
   end
 end
 ```
@@ -88,3 +88,8 @@ end
 To run tests setup env var with your access_token and run `rake`
 
 export YANDEX_DISK_TOKEN=e5d4aaa4ec2246558b510f7fef25b7b1
+
+## Thanks for support and contribution
+
+- @aishek (Alexandr Borisov)
+- @ilyario (Пономарев Илья)
