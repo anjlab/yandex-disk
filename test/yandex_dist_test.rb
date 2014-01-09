@@ -11,6 +11,18 @@ class YandexDiskTest < MiniTest::Unit::TestCase
 
   def test_initilize
     assert @disk
+
+    assert_raises ArgumentError, 'No :access_token or :login and :password' do
+      Yandex::Disk::Client.new
+    end
+
+    assert_raises ArgumentError, 'No :access_token or :login and :password' do
+      Yandex::Disk::Client.new login: 'login_without_password'
+    end
+
+    assert_raises ArgumentError, 'No :access_token or :login and :password' do
+      Yandex::Disk::Client.new password: 'password_without_login'
+    end
   end
 
   def test_put_and_get
@@ -24,13 +36,8 @@ class YandexDiskTest < MiniTest::Unit::TestCase
   # end
 
   def test_put!
-    assert_raises RuntimeError do
-      begin
-        @disk.put!('README.md', '/folder/that/doesnt/exists/README.md')
-      rescue RuntimeError => e
-        assert_equal 'store: parent folder was not found', e.message
-        raise e
-      end
+    assert_raises RuntimeError, 'store: parent folder was not found' do
+      @disk.put!('README.md', '/folder/that/doesnt/exists/README.md')
     end
   end
 

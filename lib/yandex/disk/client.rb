@@ -14,23 +14,21 @@ module Yandex
       def initialize options={}
         @timeout = options[:timeout] || 300
         @http = Faraday.new(:url => 'https://webdav.yandex.ru') do |builder|
-          unless options[:access_token].nil? and options[:login].nil? and options[:password].nil?
-            if !options[:access_token].nil? and !options[:access_token].empty?
-              builder.request :authorization, "OAuth", options[:access_token]
-            else
-              basic_token = Base64.encode64("#{options[:login]}:#{options[:password]}")
-              builder.request :authorization, "Basic", basic_token
-            end
-
-            builder.response :follow_redirects
-
-            if faraday_configurator = options[:faraday_configurator]
-              faraday_configurator.call(builder)
-            else
-              builder.adapter :excon
-            end
+          if options[:access_token] && options[:access_token].length > 0
+            builder.request :authorization, "OAuth", options[:access_token]
+          elsif options[:login] && options[:password]
+            basic_token = Base64.encode64("#{options[:login]}:#{options[:password]}")
+            builder.request :authorization, "Basic", basic_token
           else
-            raise ArgumentError.new ('Not argument "access_token" or "login" and "password"')
+            raise ArgumentError, 'No :access_token or :login and :password'
+          end
+
+          builder.response :follow_redirects
+
+          if faraday_configurator = options[:faraday_configurator]
+            faraday_configurator.call(builder)
+          else
+            builder.adapter :excon
           end
         end
       end
