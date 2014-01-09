@@ -12,15 +12,17 @@ class YandexDiskTest < MiniTest::Unit::TestCase
   def test_initilize
     assert @disk
 
-    assert_raises ArgumentError, 'No :access_token or :login and :password' do
+    error_message = 'No :access_token or :login and :password'
+
+    assert_raises ArgumentError, error_message do
       Yandex::Disk::Client.new
     end
 
-    assert_raises ArgumentError, 'No :access_token or :login and :password' do
+    assert_raises ArgumentError, error_message do
       Yandex::Disk::Client.new login: 'login_without_password'
     end
 
-    assert_raises ArgumentError, 'No :access_token or :login and :password' do
+    assert_raises ArgumentError, error_message do
       Yandex::Disk::Client.new password: 'password_without_login'
     end
   end
@@ -51,13 +53,8 @@ class YandexDiskTest < MiniTest::Unit::TestCase
 
   def test_delete!
     @disk.delete('/a')
-    assert_raises RuntimeError do
-      begin
-        @disk.delete!('/a')
-      rescue RuntimeError => e
-        assert_equal 'resource not found', e.message
-        raise e
-      end
+    assert_raises RuntimeError, 'resource not found' do
+      @disk.delete!('/a')
     end
   end
 
