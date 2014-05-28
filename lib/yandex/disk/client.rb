@@ -23,8 +23,6 @@ module Yandex
             raise ArgumentError, 'No :access_token or :login and :password'
           end
 
-          builder.response :follow_redirects
-
           if faraday_configurator = options[:faraday_configurator]
             faraday_configurator.call(builder)
           else
