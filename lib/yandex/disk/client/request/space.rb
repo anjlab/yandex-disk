@@ -27,7 +27,7 @@ class Yandex::Disk::Client::Request::Space
 
   private
 
-  class AttriutesParser < Nokogiri::XML::SAX::Document
+  class AttributesParser < Nokogiri::XML::SAX::Document
     attr_reader :quota_available_bytes, :quota_used_bytes
 
     def start_element name, attributes = []
@@ -46,7 +46,7 @@ class Yandex::Disk::Client::Request::Space
   end
 
   def parse body
-    attributes_parser = AttriutesParser.new
+    attributes_parser = AttributesParser.new
 
     parser = Nokogiri::XML::SAX::Parser.new(attributes_parser)
     parser.parse(body)

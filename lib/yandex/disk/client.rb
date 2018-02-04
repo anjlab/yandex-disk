@@ -5,6 +5,7 @@ require 'faraday'
 require 'faraday_middleware'
 
 Faraday::Connection::METHODS << :propfind
+Faraday::Connection::METHODS << :proppatch
 
 module Yandex
   module Disk
@@ -60,6 +61,11 @@ module Yandex
 
       def list path
         request = Request::List.new(@http, path)
+        request.perform
+      end
+
+      def make_public path
+        request = Request::Publication.new(@http, path)
         request.perform
       end
 
