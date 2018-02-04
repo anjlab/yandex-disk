@@ -1,4 +1,3 @@
-require 'net/http'
 require 'nokogiri'
 
 class Yandex::Disk::Client::Request::Publication
