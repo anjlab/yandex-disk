@@ -36,7 +36,7 @@ class Yandex::Disk::Client::Request::Publication
     end
 
     def characters string
-      @public_url = string if @public_url
+      @public_url = string if (@public_url == true)
     end
   end
 
