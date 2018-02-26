@@ -98,3 +98,4 @@ export YANDEX_DISK_TOKEN=e5d4aaa4ec2246558b510f7fef25b7b1
 
 - [@aishek (Alexandr Borisov)](https://github.com/aishek)
 - [@ilyario (Пономарев Илья)](https://github.com/ilyario)
+- [@vivanov77](https://github.com/vivanov77)
