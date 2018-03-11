@@ -69,6 +69,11 @@ module Yandex
         request.perform
       end
 
+      def make_private path
+        request = Request::Private.new(@http, path)
+        request.perform
+      end
+
       alias_method :mkdir, :mkcol
 
       def mkdir_p path

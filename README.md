@@ -51,6 +51,9 @@ disk.delete('/path/to/remote/file/or/dir') # returns `true` if everything is ok
 # to make folder or file public
 disk.make_public('/path/to/remote/dir/or/file') # returns hash with public url `=> { :public_url => "https://yadi.sk/i/B98Qjxxx3S5QJc" }` if everything is ok
 
+# to make folder or file private
+disk.make_private('/path/to/remote/dir/or/file') # returns true if everything is ok
+
 # to get quotas
 disk.space # returns hash like { :quota_available_bytes => 2488943615, :quota_used_bytes => 2488943615 }
 
