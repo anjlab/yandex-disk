@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Yandex::Disk::Client::Request
   autoload :Space, 'yandex/disk/client/request/space'
   autoload :List, 'yandex/disk/client/request/list'

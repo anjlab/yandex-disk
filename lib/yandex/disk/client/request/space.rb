@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'nokogiri'
 
 class Yandex::Disk::Client::Request::Space
@@ -6,13 +8,14 @@ class Yandex::Disk::Client::Request::Space
     <D:quota-available-bytes/>
     <D:quota-used-bytes/>
   </D:prop>
-</D:propfind>'
+</D:propfind>'.freeze
   HEADERS = {
     :Depth => 0
-  }
+  }.freeze
 
   def initialize http
     @http = http
+    freeze
   end
 
   def perform

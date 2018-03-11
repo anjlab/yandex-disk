@@ -1,20 +1,23 @@
+# frozen_string_literal: true
+
 require 'nokogiri'
 
 class Yandex::Disk::Client::Request::Publication
-  BODY = 
+  BODY =
   '<propertyupdate xmlns="DAV:">
     <set>
       <prop>
         <public_url xmlns="urn:yandex:disk:meta">true</public_url>
       </prop>
     </set>
-  </propertyupdate>'
+  </propertyupdate>'.freeze
   HEADERS = {
-  }
+  }.freeze
 
   def initialize http, path
     @http = http
     @path = path
+    freeze
   end
 
   def perform

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Yandex::Disk::Client::Request::Private
   BODY =
   '<propertyupdate xmlns="DAV:">
@@ -6,13 +8,14 @@ class Yandex::Disk::Client::Request::Private
         <public_url xmlns="urn:yandex:disk:meta" />
       </prop>
     </set>
-  </propertyupdate>'
+  </propertyupdate>'.freeze
   HEADERS = {
-  }
+  }.freeze
 
   def initialize http, path
     @http = http
     @path = path
+    freeze
   end
 
   def perform
