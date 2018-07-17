@@ -1,5 +1,7 @@
 # coding: utf-8
 
+# frozen_string_literal: true
+
 require 'base64'
 require 'faraday'
 require 'faraday_middleware'

@@ -1,4 +1,7 @@
 # coding: utf-8
+
+# frozen_string_literal: true
+
 require 'yandex/disk/client'
 
 module Backup
@@ -37,7 +40,7 @@ module Backup
         end
 
         def storage_name
-          'Yandex::Disk'
+          'Yandex::Disk'.freeze
         end
 
       end

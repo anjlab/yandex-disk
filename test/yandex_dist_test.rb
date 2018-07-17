@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "minitest/autorun"
 require File.expand_path(File.dirname(__FILE__) + '/../lib/yandex/disk')
 

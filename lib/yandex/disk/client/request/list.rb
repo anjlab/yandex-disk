@@ -1,13 +1,16 @@
+# frozen_string_literal: true
+
 require 'nokogiri'
 
 class Yandex::Disk::Client::Request::List
   HEADERS = {
     :Depth => 1
-  }
+  }.freeze
 
   def initialize http, path
     @http = http
     @path = path
+    freeze
   end
 
   def perform
