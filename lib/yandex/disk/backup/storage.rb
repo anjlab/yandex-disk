@@ -5,6 +5,7 @@ module Backup
   module Storage
     module Yandex
       class Disk < Base
+        include Storage::Cycler
 
         attr_accessor :access_token
 
