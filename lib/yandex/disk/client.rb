@@ -18,7 +18,7 @@ module Yandex
           if options[:access_token] && options[:access_token].length > 0
             builder.request :authorization, "OAuth", options[:access_token]
           elsif options[:login] && options[:password]
-            basic_token = Base64.encode64("#{options[:login]}:#{options[:password]}")
+            basic_token = Base64.strict_encode64("#{options[:login]}:#{options[:password]}")
             builder.request :authorization, "Basic", basic_token
           else
             raise ArgumentError, 'No :access_token or :login and :password'
